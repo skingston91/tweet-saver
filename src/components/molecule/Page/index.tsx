@@ -1,4 +1,5 @@
 import React, {SFC, ReactNode} from 'react';
+import './Page.css'
 
 export type PageProps = {
     headerText?: string;
@@ -11,7 +12,10 @@ export const Page: SFC<PageProps> = ({headerText, children}) => {
             {headerText && <h1 className="Page-Header">
                 {headerText}
             </h1>}
-            {children}
+            <div className="Page-line"/>
+            <div className="Page-content">
+                {children}
+            </div>
         </div>
     )
 }
