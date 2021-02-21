@@ -48,14 +48,14 @@ export const SaverPage: SFC<{}> = () => {
                         <h2 className="Saver-Page--Saved-Header">Saved Tweets</h2>
                     </div>
                     <div className="Saver-Page--Search-Status">
-                    {service && service.status === 'init' && <p>Please enter some text to start</p> }
-                    {service && service.status === 'loading' && <div>Loading...</div>}
-                    {service && service.status === 'loaded' && <div>Loaded </div>}
-                    </div>
-                    <div className="Saver-Page--Tweet-Container-Wrapper">
-                            {service && service.status === 'error' && (
+                        {service && service.status === 'init' && <p>Please enter some text to start</p> }
+                        {service && service.status === 'loading' && <div>Loading...</div>}
+                        {service && service.status === 'loaded' && <div>Loaded </div>}
+                        {service && service.status === 'error' && (
                                 <div>Error loading the request, sorry!</div>
                             )}
+                    </div>
+                    <div className="Saver-Page--Tweet-Container-Wrapper">
                             <TweetContainer
                                 tweets={reformattedTweets}
                                 handleDrop={(tweet) => {

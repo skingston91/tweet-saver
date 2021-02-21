@@ -1,49 +1,32 @@
 # Tweet-saver
 Create a one page webapp that allows users to save tweets to HTML 5 local storage by dragging and dropping (see mockup below). Users can search for tweets to save by putting in some text into a search field and clicking the search button to populate the left hand column with the 10 most recent twitter posts matching that criteria. The user can then drag and drop tweets from the left hand column to column on the right labelled saved tweets. The saved tweets will get "saved" in the page so that when the user refreshes the page or comes back to it later his saved tweets are still present.
 
-# Getting Started with Create React App
+# Prerequisites
+Yarn or NPM
+Node
+# Installing the App
+Replace the bearer Token in the .env file with your own bearer token from Twitter
+Fake example below
+`BEARER_TOKEN=Bearer AASSHFHSAFHHASHFHSAHFHSHFAHF`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Run `yarn` to install the dependencies 
+# Starting the App
+Run `yarn startClient`
+Run `yarn startServer`
 
-## Available Scripts
+This will start the node server and the react app
 
-In the project directory, you can run:
+Go to http://localhost:3000/ to see the page
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Running Tests
+Run `yarn test`
+## Improvements
+Improve/More Tests
+Typescript for the node sever
+Abstracted the api Request Hook
+Abstracted out the Draggable entities to own components
+Migrate the CSS to either styled compontents or Less (or potentially migrate to a component library)
+Rename the css to be named styles.css
+Prettier + TSLint + Husky automated running
+CI/CD Deployment Pipeline + Enviroment Variable injection for the Bearer Token
+Component library added for handling the components

@@ -26,7 +26,7 @@ export const Tweet: SFC<TweetProps> = ({profilePicture, name, twitterHandle, dat
                         <h3 className="Tweet-name">{name}</h3>
                         <p className="Tweet-twitterHandle">{twitterHandle}</p>
                     </div>
-                    <p className="Tweet-date">{new Date(date).toLocaleDateString() }</p>
+                    {date && <p className="Tweet-date">{new Date(date).toLocaleDateString() }</p>}
                 </div>
                 <p className="Tweet-tweetContent">{tweetContent}</p>
             </div>

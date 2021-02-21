@@ -2,18 +2,21 @@ const express = require('express')
 const app = express()
 const fetch = require('node-fetch')
 const cors = require('cors')
+require('dotenv').config();
 
 app.use(cors())
 
+const bearerToken = process.env.BEARER_TOKEN
 app.get('/twitter-search', async function (req, res) {
     const {q, count= 10} = req.query
     if(q) {
         console.log("Received search term: " + q);
         try {
+            console.log(process.env)
             const response = await fetch(`https://api.twitter.com/1.1/search/tweets.json?q=${q}&count=${count}'`,{
                 headers: {
                 'Content-Type': 'application/json',
-                "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANTMMwEAAAAALkgzd3eXE95jcu3G2GXwLu%2FWGbU%3DiDwNE6K9fcUjH6zNcmRZeUsPmb0KfGutb38SCIbbNxJHOMH4t0",
+                "Authorization": bearerToken,
                 }
             })
             const data = await response.json()

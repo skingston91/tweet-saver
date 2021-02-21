@@ -16,12 +16,12 @@ const amountToFetch = 10
       // fetch(`https://yiy212fb2d.execute-api.us-east-1.amazonaws.com/Live/twitter-search?q=${searchString}&count=${amountToFetch}'`, {
         headers: {
           'Content-Type': 'application/json',
-          "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANTMMwEAAAAALkgzd3eXE95jcu3G2GXwLu%2FWGbU%3DiDwNE6K9fcUjH6zNcmRZeUsPmb0KfGutb38SCIbbNxJHOMH4t0",
         }
       })
       .then(response => response.json())
       .then(response => {
-        console.log(response)
+        console.log(response.errors)
+        if(response.errors) throw new Error(response.errors[0] || 'Error making the api request')
         if(response.statuses) setResult({ status: 'loaded', payload: response.statuses })
         else setResult({ status: 'loaded', payload: response })
       })
