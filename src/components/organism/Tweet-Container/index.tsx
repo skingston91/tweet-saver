@@ -1,27 +1,52 @@
-import React, {SFC, ReactNode} from 'react';
-import Tweet, {TweetProps} from '../../molecule/Tweet'
-import {Tweet as TweetType} from '../../../types/TwitterPosts'
+import React, {SFC} from 'react';
+import Tweet, {TweetProps, DRAG_TYPE} from '../../molecule/Tweet'
+
 import './Tweet-Container.css'
+import { useDrop } from 'react-dnd';
 export type TweetContainerProps = {
-    tweets?: TweetType[] | undefined
+    tweets: TweetProps[];
+    handleDrop?: (Tweet: TweetProps) => void;
   }
 
-export const Page: SFC<TweetContainerProps> = ({tweets}) => {
-    const reformattedTweets = tweets && tweets.map((tweet: TweetType)  => {
-        return {
-            name: tweet.user.name,
-            twitterHandle: tweet.user.screen_name,
-            date: tweet.created_at,
-            tweetContent: tweet.text,
-        }
-    });
-    return (
-        <div className="Tweet-Container">
-            {reformattedTweets && reformattedTweets.map((tweet) => {
-                return <Tweet {...tweet}/>
-            })}
-        </div>
-    )
+export const TweetContainer: SFC<TweetContainerProps> = ({tweets, ...rest}) => (
+    <div className="Tweet-Container">
+        {tweets && tweets.map((tweet) => <Tweet key={tweet.id}{...tweet} {...rest}/>)}
+    </div>
+)
+
+interface DroppableProps {
+	allowedDropEffect?: string;
 }
 
-export default Page
+type DroppableTweetProps = DroppableProps & TweetContainerProps;
+
+export const DroppableTweetContainer: SFC<DroppableTweetProps> = ({ allowedDropEffect, ...rest }) => {
+    const [{ canDrop, isOver }, drop] = useDrop({
+      // The type (or types) to accept - strings or symbols
+      accept: DRAG_TYPE,
+      drop: () => ({
+        name: `${allowedDropEffect} Dustbin`,
+        allowedDropEffect,
+    }),
+      // Props to collect
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop()
+      })
+    })
+    if(!allowedDropEffect) return <TweetContainer {...rest}/>
+    const isActive = canDrop && isOver
+    return (
+      <div
+        ref={drop}
+        style={{ backgroundColor: isActive ? 'red' : 'white', width: '100%' }}
+        className="DroppableTweetContainer"
+      >
+        <TweetContainer {...rest}/>
+      </div>
+    )
+  }
+
+
+
+export default DroppableTweetContainer

@@ -8,4 +8,5 @@ export interface Tweet {
     text: string;
     user: User_Tweet;
     created_at: string;
+    id: number;
 }

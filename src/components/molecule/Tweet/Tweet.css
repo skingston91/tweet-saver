@@ -4,6 +4,7 @@
     display: flex;
 }
 
+
 .Tweet-profilePicture {
     width: 3em;   
     display: flex;
@@ -27,6 +28,7 @@
 .Tweet-content-right {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .Tweet-TopBar-names {
