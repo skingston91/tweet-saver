@@ -1,4 +1,4 @@
-import React, {SFC, ReactNode} from 'react';
+import React, {FC, ReactNode} from 'react';
 import './Page.css'
 
 export type PageProps = {
@@ -6,7 +6,7 @@ export type PageProps = {
     children: ReactNode;
   }
 
-export const Page: SFC<PageProps> = ({headerText, children}) => (
+export const Page: FC<PageProps> = ({headerText, children}) => (
     <div className="Page">
         {headerText && <h1 className="Page-Header">
             {headerText}

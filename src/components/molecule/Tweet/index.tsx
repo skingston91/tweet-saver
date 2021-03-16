@@ -1,4 +1,4 @@
-import React, {SFC} from 'react';
+import React, {FC} from 'react';
 import { CgProfile } from 'react-icons/cg'
 import './Tweet.css'
 import { useDrag, DragSourceMonitor } from 'react-dnd'
@@ -15,7 +15,7 @@ export type TweetProps = {
     id: number;
 }
 
-export const Tweet: SFC<TweetProps> = ({profilePicture, name, twitterHandle, date, tweetContent}) => {
+export const Tweet: FC<TweetProps> = ({profilePicture, name, twitterHandle, date, tweetContent}) => {
     return (
         <div className="Tweet">
             {profilePicture && <img className="Tweet-profilePicture" alt={`${name}'s profile`}/>}
@@ -50,7 +50,7 @@ interface DraggableProps {
 export type DraggableTweetProps = DraggableProps & TweetProps;
 
 /* Handle muliple Drags and drops of same element */
-const DraggableTweet: SFC<DraggableTweetProps> = (props) => {
+const DraggableTweet: FC<DraggableTweetProps> = (props) => {
     const {handleDrop, ...rest} = props
     const item = { name: rest.name, type: DRAG_TYPE }
     const [{ opacity }, drag] = useDrag({
