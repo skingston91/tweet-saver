@@ -1,4 +1,4 @@
-import React, {SFC, useState} from 'react';
+import React, {FC, useState} from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Page from '../../components/molecule/Page'
@@ -12,7 +12,7 @@ import {CgArrowRight} from 'react-icons/cg'
 import './SaverPage.css'
 import { Tweet } from '../../types/TwitterPosts';
 
-export const SaverPage: SFC<{}> = () => {
+export const SaverPage: FC<{}> = () => {
     const [searchTerm, setSearchTerm] = useState('')
     const [localStorageTweets, setLocalStorageTweets] = useState(getLocalKey(STORAGE_KEY) || [] )
     const service = useSearchTwitterPosts(searchTerm);
@@ -37,7 +37,6 @@ export const SaverPage: SFC<{}> = () => {
                                 placeholder="Search Twitter"
                                 onChange={(e) => {
                                     const value = e.target.value
-                                    // debounce the request 
                                     setSearchTerm(value)
                                 }} 
                             />

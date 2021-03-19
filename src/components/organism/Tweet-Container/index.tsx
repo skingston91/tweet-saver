@@ -1,4 +1,4 @@
-import React, {SFC} from 'react';
+import React, {FC} from 'react';
 import Tweet, {TweetProps, DRAG_TYPE} from '../../molecule/Tweet'
 
 import './Tweet-Container.css'
@@ -8,7 +8,7 @@ export type TweetContainerProps = {
     handleDrop?: (Tweet: TweetProps) => void;
   }
 
-export const TweetContainer: SFC<TweetContainerProps> = ({tweets, ...rest}) => (
+export const TweetContainer: FC<TweetContainerProps> = ({tweets, ...rest}) => (
     <div className="Tweet-Container">
         {tweets && tweets.map((tweet) => <Tweet key={tweet.id}{...tweet} {...rest}/>)}
     </div>
@@ -20,7 +20,7 @@ interface DroppableProps {
 
 type DroppableTweetProps = DroppableProps & TweetContainerProps;
 
-export const DroppableTweetContainer: SFC<DroppableTweetProps> = ({ allowedDropEffect, ...rest }) => {
+export const DroppableTweetContainer: FC<DroppableTweetProps> = ({ allowedDropEffect, ...rest }) => {
     const [{ canDrop, isOver }, drop] = useDrop({
       // The type (or types) to accept - strings or symbols
       accept: DRAG_TYPE,
